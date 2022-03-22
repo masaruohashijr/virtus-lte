@@ -1,5 +1,9 @@
 package br.gov.previc.virtus.controller;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,37 +28,58 @@ import br.gov.previc.virtus.repository.StatusRepository;
 @Controller
 @CrossOrigin(origins = { "http://localhost:4200" })
 public class StatusController {
+
     @Autowired
     private StatusRepository statusRepository;
 
-    @GetMapping(path = "/statuses")
-    public @ResponseBody List<Status> getAll() {
+    @PostMapping(value = "/status")
+    @ResponseBody
+    public Status addStatus(@RequestBody Status status) {
+
+        if(status.getCreated_at() == null) {
+            status.setCreated_at(Timestamp.from(Instant.now()));
+        }
+        return statusRepository.save(status);
+    }
+
+    @GetMapping("/status/{id}")
+    public @ResponseBody Status getStatus(@PathVariable("id") int id) {
+        return statusRepository.findById(id).orElse(null);
+    }
+
+    @GetMapping(path = "/status")
+    public @ResponseBody List<Status> getStatuss() {
         Iterable<Status> iterable = statusRepository.findAll();
         List<Status> result = StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
         return result;
     }
 
-    @PostMapping(value = "/status")
-    public @ResponseBody Status add(@RequestBody Status status) {
-        System.out.println("Adding "+status.getName());
-        return statusRepository.save(status);
-    }
-
-    @DeleteMapping("/status/{id}")
-    public ResponseEntity<Map<String, Boolean>> delete(@PathVariable int id) {
-        Status status = statusRepository.findById(id).get();
-        statusRepository.delete(status);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return ResponseEntity.ok(response);        
-    }
-
     @PutMapping("/status/{id}")
-	public ResponseEntity<Status> update(@PathVariable Integer id, @RequestBody Status statusDetails){
-		Status status = statusRepository.findById(id).get();
-		status.setName(statusDetails.getName());
-		Status updatedStatus = statusRepository.save(status);
+	public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status formStatus){
+        
+        Status  status = statusRepository.findById(id).get();
+        		status.setName(formStatus.getName());
+        		status.setDescription(formStatus.getDescription());
+        		status.setAuthor_id(formStatus.getAuthor_id());
+        		status.setCreated_at(formStatus.getCreated_at());
+        		status.setId_versao_origem(formStatus.getId_versao_origem());
+        		status.setStatus_id(formStatus.getStatus_id());
+        		status.setStereotype(formStatus.getStereotype());
+
+        Status updatedStatus = statusRepository.save(status);
 		return ResponseEntity.ok(updatedStatus);
 	}
+
+    @DeleteMapping("/status/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteStatus(@PathVariable int id) {
+
+        Status status = statusRepository.findById(id).get();
+                    	statusRepository.delete(status);
+
+        Map<String, Boolean>	response = new HashMap<>();
+        						response.put("deleted", Boolean.TRUE);
+        						
+        return ResponseEntity.ok(response);
+    }
 
 }
