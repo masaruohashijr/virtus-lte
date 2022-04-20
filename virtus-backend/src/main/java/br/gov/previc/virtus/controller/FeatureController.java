@@ -39,7 +39,7 @@ public class FeatureController {
         return featureRepository.findById(id).orElse(null);
     }
 
-    @GetMapping(path = "/feature")
+    @GetMapping(path = "/feature/list")
     public @ResponseBody List<Feature> getFeatures() {
         Iterable<Feature> iterable = featureRepository.findAll();
         List<Feature> result = StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
@@ -53,10 +53,6 @@ public class FeatureController {
         		feature.setName(formFeature.getName());
                 feature.setCode(formFeature.getCode());
                 feature.setDescription(formFeature.getDescription());
-                feature.setAuthor_id(formFeature.getAuthor_id());
-                feature.setCreated_at(formFeature.getCreated_at());
-                feature.setId_versao_origem(formFeature.getId_versao_origem());
-                feature.setStatus_id(formFeature.getStatus_id());
 
         Feature updatedFeature = featureRepository.save(feature);
 		return ResponseEntity.ok(updatedFeature);

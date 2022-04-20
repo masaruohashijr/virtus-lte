@@ -19,17 +19,12 @@ public class Workflow {
 	private String entity_type;
 	private Timestamp start_at;
 	private Timestamp end_at;
-	private int author_id;
-	private Timestamp created_at;
-	private int id_versao_origem;
-	private int status_id;
 	
 	public Workflow() {
 		super();
 	}
 
-	public Workflow(int id, String name, String description, String entity_type, Timestamp start_at, Timestamp end_at,
-			int author_id, Timestamp created_at, int id_versao_origem, int status_id) {
+	public Workflow(int id, String name, String description, String entity_type, Timestamp start_at, Timestamp end_at) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,10 +32,6 @@ public class Workflow {
 		this.entity_type = entity_type;
 		this.start_at = start_at;
 		this.end_at = end_at;
-		this.author_id = author_id;
-		this.created_at = created_at;
-		this.id_versao_origem = id_versao_origem;
-		this.status_id = status_id;
 	}
 
 	public int getId() {
@@ -89,38 +80,6 @@ public class Workflow {
 
 	public void setEnd_at(Timestamp end_at) {
 		this.end_at = end_at;
-	}
-
-	public int getAuthor_id() {
-		return author_id;
-	}
-
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
-	}
-
-	public Timestamp getCreated_at() {
-		return created_at;
-	}
-
-	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
-	}
-
-	public int getId_versao_origem() {
-		return id_versao_origem;
-	}
-
-	public void setId_versao_origem(int id_versao_origem) {
-		this.id_versao_origem = id_versao_origem;
-	}
-
-	public int getStatus_id() {
-		return status_id;
-	}
-
-	public void setStatus_id(int status_id) {
-		this.status_id = status_id;
 	}
     
 }

@@ -1,7 +1,5 @@
 package br.gov.previc.virtus.domain;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,26 +15,17 @@ public class Feature {
 	private String name;
 	private String code;
 	private String description;
-	private int author_id;
-	private Timestamp created_at;
-	private int id_versao_origem;
-	private int status_id;
 	
 	public Feature() {
 		super();
 	}
 
-	public Feature(int id, String name, String code, String description, int author_id, Timestamp created_at,
-			int id_versao_origem, int status_id) {
+	public Feature(int id, String name, String code, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.code = code;
 		this.description = description;
-		this.author_id = author_id;
-		this.created_at = created_at;
-		this.id_versao_origem = id_versao_origem;
-		this.status_id = status_id;
 	}
 
 	public int getId() {
@@ -69,38 +58,6 @@ public class Feature {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getAuthor_id() {
-		return author_id;
-	}
-
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
-	}
-
-	public Timestamp getCreated_at() {
-		return created_at;
-	}
-
-	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
-	}
-
-	public int getId_versao_origem() {
-		return id_versao_origem;
-	}
-
-	public void setId_versao_origem(int id_versao_origem) {
-		this.id_versao_origem = id_versao_origem;
-	}
-
-	public int getStatus_id() {
-		return status_id;
-	}
-
-	public void setStatus_id(int status_id) {
-		this.status_id = status_id;
 	}
     
 }

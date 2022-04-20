@@ -1,12 +1,13 @@
 package br.gov.previc.virtus.domain;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
 @Entity
 public class Office {
 
@@ -18,27 +19,16 @@ public class Office {
 	private String abreviatura;
 	private String descricao;
 	private int chefe_id;
-	private int author_id;
-	private Timestamp criado_em;
-	private int id_versao_origem;
-	private int status_id;
+	
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "office")
+    private List<User> users;
 
-	public Office() {
-		super();
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public Office(int id, String nome, String abreviatura, String descricao, int chefe_id, int author_id,
-			Timestamp criado_em, int id_versao_origem, int status_id) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.abreviatura = abreviatura;
-		this.descricao = descricao;
-		this.chefe_id = chefe_id;
-		this.author_id = author_id;
-		this.criado_em = criado_em;
-		this.id_versao_origem = id_versao_origem;
-		this.status_id = status_id;
+	public void setUser(List<User> users) {
+		this.users = users;
 	}
 
 	public int getId() {
@@ -81,36 +71,4 @@ public class Office {
 		this.chefe_id = chefe_id;
 	}
 
-	public int getAuthor_id() {
-		return author_id;
-	}
-
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
-	}
-
-	public Timestamp getCriado_em() {
-		return criado_em;
-	}
-
-	public void setCriado_em(Timestamp criado_em) {
-		this.criado_em = criado_em;
-	}
-
-	public int getId_versao_origem() {
-		return id_versao_origem;
-	}
-
-	public void setId_versao_origem(int id_versao_origem) {
-		this.id_versao_origem = id_versao_origem;
-	}
-
-	public int getStatus_id() {
-		return status_id;
-	}
-
-	public void setStatus_id(int status_id) {
-		this.status_id = status_id;
-	}
-	
 }

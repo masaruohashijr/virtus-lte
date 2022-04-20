@@ -39,7 +39,7 @@ public class OfficeController {
         return officeRepository.findById(id).orElse(null);
     }
 
-    @GetMapping(path = "/office")
+    @GetMapping(path = "/office/list")
     public @ResponseBody List<Office> getOffices() {
         Iterable<Office> iterable = officeRepository.findAll();
         List<Office> result = StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
@@ -54,10 +54,7 @@ public class OfficeController {
                 office.setAbreviatura(formOffice.getAbreviatura());
                 office.setDescricao(formOffice.getDescricao());
                 office.setChefe_id(formOffice.getChefe_id());
-                office.setAuthor_id(formOffice.getAuthor_id());
-                office.setCriado_em(formOffice.getCriado_em());
-                office.setId_versao_origem(formOffice.getId_versao_origem());
-                office.setStatus_id(formOffice.getStatus_id());
+
 
         Office updatedOffice = officeRepository.save(office);
 		return ResponseEntity.ok(updatedOffice);

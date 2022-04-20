@@ -1,9 +1,5 @@
 package br.gov.previc.virtus.controller;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,10 +31,6 @@ public class StatusController {
     @PostMapping(value = "/status")
     @ResponseBody
     public Status addStatus(@RequestBody Status status) {
-
-        if(status.getCreated_at() == null) {
-            status.setCreated_at(Timestamp.from(Instant.now()));
-        }
         return statusRepository.save(status);
     }
 
@@ -60,10 +52,6 @@ public class StatusController {
         Status  status = statusRepository.findById(id).get();
         		status.setName(formStatus.getName());
         		status.setDescription(formStatus.getDescription());
-        		status.setAuthor_id(formStatus.getAuthor_id());
-        		status.setCreated_at(formStatus.getCreated_at());
-        		status.setId_versao_origem(formStatus.getId_versao_origem());
-        		status.setStatus_id(formStatus.getStatus_id());
         		status.setStereotype(formStatus.getStereotype());
 
         Status updatedStatus = statusRepository.save(status);

@@ -1,7 +1,5 @@
 package br.gov.previc.virtus.domain;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,27 +7,21 @@ import javax.persistence.Id;
 
 @Entity
 public class Action {
-	
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
     private String name;
     private int origin_status_id;
     private int destination_status_id;
     private boolean other_than;
     private String description;
-    private int author_id;
-    private Timestamp created_at;
-    private int id_versao_origem;
-    private int status_id;
 
     public Action() {
-		super();
+    	super();
     }
 
-	public Action(int id, String name, int origin_status_id, int destination_status_id, boolean other_than,
-			String description, int author_id, Timestamp created_at, int id_versao_origem, int status_id) {
+	public Action(int id, String name, int origin_status_id, int destination_status_id, boolean other_than, String description) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,10 +29,6 @@ public class Action {
 		this.destination_status_id = destination_status_id;
 		this.other_than = other_than;
 		this.description = description;
-		this.author_id = author_id;
-		this.created_at = created_at;
-		this.id_versao_origem = id_versao_origem;
-		this.status_id = status_id;
 	}
 
 	public int getId() {
@@ -91,36 +79,4 @@ public class Action {
 		this.description = description;
 	}
 
-	public int getAuthor_id() {
-		return author_id;
-	}
-
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
-	}
-
-	public Timestamp getCreated_at() {
-		return created_at;
-	}
-
-	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
-	}
-
-	public int getId_versao_origem() {
-		return id_versao_origem;
-	}
-
-	public void setId_versao_origem(int id_versao_origem) {
-		this.id_versao_origem = id_versao_origem;
-	}
-
-	public int getStatus_id() {
-		return status_id;
-	}
-
-	public void setStatus_id(int status_id) {
-		this.status_id = status_id;
-	}
-    
 }

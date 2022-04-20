@@ -55,10 +55,6 @@ public class WorkflowController {
 					workflow.setEntity_type(formWorkflow.getEntity_type());
 					workflow.setStart_at(formWorkflow.getStart_at());
 					workflow.setEnd_at(formWorkflow.getEnd_at());
-					workflow.setAuthor_id(formWorkflow.getAuthor_id());
-					workflow.setCreated_at(formWorkflow.getCreated_at());
-					workflow.setId_versao_origem(formWorkflow.getId_versao_origem());
-					workflow.setCreated_at(formWorkflow.getCreated_at());
 
         Workflow updatedWorkflow = workflowRepository.save(workflow);
 		return ResponseEntity.ok(updatedWorkflow);

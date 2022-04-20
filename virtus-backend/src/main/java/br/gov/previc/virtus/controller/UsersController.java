@@ -55,8 +55,7 @@ public class UsersController {
                 user.setEmail(formUser.getEmail());
                 user.setMobile(formUser.getMobile());
                 user.setName(formUser.getName());
-                user.setRole_id(formUser.getRole_id());
-                user.setAuthor_id(formUser.getAuthor_id());
+//                user.setAuthor_id(formUser.getAuthor_id());
 
         User updatedUser = userRepository.save(user);
 		return ResponseEntity.ok(updatedUser);

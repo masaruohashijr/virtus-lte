@@ -55,10 +55,6 @@ public class ActionController {
                 action.setDestination_status_id(formAction.getDestination_status_id());
                 action.setOther_than(formAction.isOther_than());
                 action.setDescription(formAction.getDescription());
-                action.setAuthor_id(formAction.getAuthor_id());
-                action.setCreated_at(formAction.getCreated_at());
-                action.setId_versao_origem(formAction.getId_versao_origem());
-                action.setStatus_id(formAction.getStatus_id());
                 
         Action updatedAction = actionRepository.save(action);
 		return ResponseEntity.ok(updatedAction);
