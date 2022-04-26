@@ -2,6 +2,7 @@ package br.gov.previc.virtus.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class Office {
 	private String descricao;
 	private int chefe_id;
 	
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "office")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "office", cascade = CascadeType.ALL)
     private List<User> users;
 
 	public List<User> getUsers() {

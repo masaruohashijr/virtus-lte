@@ -1,8 +1,10 @@
 package br.gov.previc.virtus.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Spliterator;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -41,9 +43,13 @@ public class UsersController {
 
     @GetMapping(path = "/user/list")
     public @ResponseBody List<User> getUsers() {
-        Iterable<User> iterable = userRepository.findAll();
-        List<User> result = StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
-        return result;
+
+//    	Iterable<User> iterable = userRepository.findAll();    	
+//      List<User> result = StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
+  	
+    	List<User> actualList = userRepository.findAll();
+
+        return actualList;
     }
 
     @PutMapping("/user/{id}")
